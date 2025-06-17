@@ -89,6 +89,67 @@
       color: #2980b9;
       text-decoration: none;
     }
+
+    #toTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  #toTopBtn:hover {
+    background-color: #1c5d87;
+  }
+
+  .hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #2c3e50;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem 0;
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  nav a {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+    
   </style>
 </head>
 <body>
@@ -98,6 +159,7 @@
   <h1>Rudi Ismanto</h1>
   <p>Software Quality Assurance</p>
   <nav>
+    <div class="hamburger" id="hamburger">&#9776;</div>
     <a href="#tentang">About Me</a>
     <a href="#keahlian">Skill</a>
     <a href="#proyek">Project</a>
@@ -154,6 +216,21 @@
 </section>
 
 <script>
+   const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("navMenu");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+  });
+
+  // Optional: hide nav after clicking a link (for mobile UX)
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("show");
+    });
+  });
+
+  
   document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -170,30 +247,9 @@
 <!-- Floating Action Button -->
 <button id="toTopBtn" title="Kembali ke atas">&#8679;</button>
 
-<style>
-  #toTopBtn {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 100;
-    background-color: #2980b9;
-    color: white;
-    border: none;
-    outline: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    transition: opacity 0.3s ease;
-  }
-
-  #toTopBtn:hover {
-    background-color: #1c5d87;
-  }
-</style>
+<!-- <style>
+  
+</style> -->
 
 <script>
   const toTopBtn = document.getElementById("toTopBtn");
